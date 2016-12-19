@@ -152,8 +152,6 @@ public class CalculatorAlpha implements Evaluator {
             return temp.toString();
         }
 
-
-        System.out.println(temp);
         // Variable
         if (strToCalculate.charAt(position) != '(') {
             String variable = temp.toString();
