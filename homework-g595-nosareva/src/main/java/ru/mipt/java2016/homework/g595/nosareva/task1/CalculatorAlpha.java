@@ -2,14 +2,10 @@ package ru.mipt.java2016.homework.g595.nosareva.task1;
 
 import javafx.util.Pair;
 import ru.mipt.java2016.homework.base.task1.ParsingException;
-import ru.mipt.java2016.homework.base.task1.Calculator;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class CalculatorAlpha implements Evaluator {
 
@@ -68,7 +64,7 @@ public class CalculatorAlpha implements Evaluator {
         return number.toString();
     }
 
-    private Pair<Boolean, Double> Predefined(String function, ArrayList<Double> args) throws ParsingException {
+    private Pair<Boolean, Double> predefined(String function, ArrayList<Double> args) throws ParsingException {
         switch (function) {
             case "sin":
                 if (args.size() != 1) {
@@ -109,12 +105,12 @@ public class CalculatorAlpha implements Evaluator {
                 if (args.size() != 2) {
                     throw new ParsingException("Wrong number of arguments in log()");
                 }
-                return new Pair<>(true, Math.log(args.get(0))/Math.log(args.get(1)));
+                return new Pair<>(true, Math.log(args.get(0)) / Math.log(args.get(1)));
             case "log2":
                 if (args.size() != 1) {
                     throw new ParsingException("Wrong number of arguments in log2()");
                 }
-                return new Pair<>(true, Math.log(args.get(0))/Math.log(2.0));
+                return new Pair<>(true, Math.log(args.get(0)) / Math.log(2.0));
             case "rnd":
                 if (args.size() != 0) {
                     throw new ParsingException("Wrong number of arguments in rnd()");
@@ -192,7 +188,7 @@ public class CalculatorAlpha implements Evaluator {
         }
         String function = temp.toString();
 
-        Pair<Boolean, Double> predef = Predefined(function, argList);
+        Pair<Boolean, Double> predef = predefined(function, argList);
         if (predef.getKey()) {
             return predef.getValue().toString();
         }
@@ -233,7 +229,7 @@ public class CalculatorAlpha implements Evaluator {
         }
     }
 
-    private Double getMul() throws ParsingException, Exception {
+    private Double getMul() throws Exception {
         Double number = getBrackets();
         getEps();
         while (strToCalculate.charAt(position) == '*' ||
@@ -249,7 +245,7 @@ public class CalculatorAlpha implements Evaluator {
         return number;
     }
 
-    private Double getSum() throws ParsingException, Exception {
+    private Double getSum() throws Exception {
         getEps();
         Double number = getMul();
         while (strToCalculate.charAt(position) == '+' ||
@@ -265,7 +261,7 @@ public class CalculatorAlpha implements Evaluator {
         return number;
     }
 
-    private Double getResult() throws ParsingException, Exception {
+    private Double getResult() throws Exception {
         position = 0;
         Double result = getSum();
 
@@ -277,7 +273,7 @@ public class CalculatorAlpha implements Evaluator {
     }
 
     @Override
-    public Double eval() throws ParsingException, Exception {
+    public Double eval() throws Exception {
 
         if (strToCalculate == null) {
             throw new ParsingException("Null expression");
@@ -301,7 +297,7 @@ public class CalculatorAlpha implements Evaluator {
 
     @Override
     public ArrayList<String> getParameters() {
-        return new ArrayList<String>(fromNumberToPar.values());
+        return new ArrayList<>(fromNumberToPar.values());
     }
 
     @Override

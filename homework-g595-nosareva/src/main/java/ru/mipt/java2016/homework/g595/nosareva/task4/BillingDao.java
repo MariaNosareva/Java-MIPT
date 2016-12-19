@@ -7,7 +7,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import ru.mipt.java2016.homework.base.task1.Calculator;
 import ru.mipt.java2016.homework.g595.nosareva.task1.CalculatorAlpha;
 
 import javax.annotation.PostConstruct;

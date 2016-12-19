@@ -5,11 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
-import ru.mipt.java2016.homework.base.task1.Calculator;
 import ru.mipt.java2016.homework.base.task1.ParsingException;
 import ru.mipt.java2016.homework.g595.nosareva.task1.CalculatorAlpha;
 import ru.mipt.java2016.homework.g595.nosareva.task1.CalculatorInterface;
@@ -17,9 +13,7 @@ import ru.mipt.java2016.homework.g595.nosareva.task1.Evaluator;
 import ru.mipt.java2016.homework.g595.nosareva.task1.WCalculator;
 
 import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 @RestController
@@ -115,7 +109,7 @@ public class CalculatorController {
     }
 
     @RequestMapping(path = "/variable/{variableName}", method = RequestMethod.PUT)
-    public boolean varPUT(@PathVariable String variableName, @RequestBody String value) throws Exception{
+    public boolean varPUT(@PathVariable String variableName, @RequestBody String value) throws Exception {
         boolean ok = load(request.getUserPrincipal().getName());
 
         if (usersClaculators.containsKey(request.getUserPrincipal().getName())) {
@@ -162,7 +156,7 @@ public class CalculatorController {
     @RequestMapping(path = "/function/{functionName}", method = RequestMethod.PUT)
     public boolean funcPUT(@PathVariable String functionName,
                            @RequestParam(value = "args") ArrayList<String> argumentsList,
-                           @RequestBody String body) throws Exception{
+                           @RequestBody String body) throws Exception {
         boolean ok = load(request.getUserPrincipal().getName());
 
         if (preFunc.contains(functionName)) {
@@ -170,7 +164,8 @@ public class CalculatorController {
         }
 
         if (usersClaculators.containsKey(request.getUserPrincipal().getName())) {
-            usersClaculators.get(request.getUserPrincipal().getName()).insertFunction(functionName, argumentsList, body);
+            usersClaculators.get(request.getUserPrincipal().getName()).insertFunction(
+                    functionName, argumentsList, body);
             billingDao.insertFunction(request.getUserPrincipal().getName(), functionName, argumentsList, body);
         }
         return ok;

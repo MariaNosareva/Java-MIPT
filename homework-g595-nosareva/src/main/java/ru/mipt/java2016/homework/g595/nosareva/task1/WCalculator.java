@@ -1,11 +1,9 @@
 package ru.mipt.java2016.homework.g595.nosareva.task1;
 
 import javafx.util.Pair;
-import ru.mipt.java2016.homework.base.task1.Calculator;
 import ru.mipt.java2016.homework.base.task1.ParsingException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -16,7 +14,7 @@ public class WCalculator implements CalculatorInterface {
     private HashMap<String, Double> variables = new HashMap<>();
     private HashMap<String, Evaluator> functions = new HashMap<>();
 
-    public WCalculator() {}
+    public WCalculator() { }
 
     public Double evaluate(String expr) throws ParsingException, Exception {
         return (new CalculatorAlpha(variables, functions, new ArrayList<>(), expr)).eval();

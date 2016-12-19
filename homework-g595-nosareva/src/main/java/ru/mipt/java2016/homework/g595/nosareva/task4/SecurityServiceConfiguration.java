@@ -1,6 +1,5 @@
 package ru.mipt.java2016.homework.g595.nosareva.task4;
 
-import netscape.security.ForbiddenTargetException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler;
 
 import java.util.Collections;
 
